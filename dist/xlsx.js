@@ -11915,7 +11915,6 @@ function parse_ws_xml(data, opts, idx, rels, wb, themes, styles) {
 			if(tmpref.e.c > refguess.e.c) tmpref.e.c = refguess.e.c;
 			if(tmpref.e.c < tmpref.s.c) tmpref.s.c = tmpref.e.c;
 			s["!fullref"] = s["!ref"];
-			//walter2
 			s["!ref"] = encode_range(tmpref);
 		}
 	}
@@ -12125,6 +12124,8 @@ return function parse_ws_xml_data(sdata, s, opts, guess, themes, styles) {
 		tagr = tag.r != null ? parseInt(tag.r, 10) : tagr+1; tagc = -1;
 
 		// console.log('walter');
+		if(!opts.startFrom || opts.startFrom == 0)  opts.startFrom = 1;
+		if(!opts.sheetRows) opts.sheetRows = 0;
 		if((opts.startFrom && opts.startFrom > tagr) || (opts.sheetRows && opts.sheetRows+opts.startFrom-1 < tagr)) continue;
 		if(guess.s.r > tagr - 1) guess.s.r = tagr - 1;
 		if(guess.e.r < tagr - 1) guess.e.r = tagr - 1;
